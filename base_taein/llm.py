@@ -28,7 +28,7 @@ CHAT_MODEL = "solar-mini4-260922"          # required by the assignment
 EMBED_PASSAGE_MODEL = "solar-embedding-2-passage"
 EMBED_QUERY_MODEL = "solar-embedding-2-query"
 
-MAX_TOKENS = 1024          # assignment upper bound is 4096
+MAX_TOKENS = 4096          # assignment upper bound is 4096
 TEMPERATURE = 0
 REASONING_EFFORT = "none"  # set to None to omit the parameter entirely
 
