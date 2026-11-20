@@ -30,6 +30,8 @@ def extract_letter(text, valid_letters):
         return None
     for pattern in (
         ANSWER_PATTERN,
+        # Lenient tag without parentheses, e.g. "[ANSWER]: A" or "[ANSWER]: **B**".
+        re.compile(r"\[ANSWER\]\s*:?\s*\**\(?([A-J])(?![A-Za-z])"),   # ← 추가
         re.compile(r"answer\s*(?:is|:)?\s*\(?([A-J])\)", re.IGNORECASE),
         re.compile(r"\(([A-J])\)"),
     ):
