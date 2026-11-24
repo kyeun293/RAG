@@ -11,7 +11,9 @@ def option_letters(prompt):
     """Letters of the answer choices that appear in the prompt, e.g. ['A','B','C','D']."""
     # Prefer "(X)" at the start of a line, so in-text mentions such as a grade
     # "낙제(F)" are not mistaken for options; fall back to any "(X)".
-    found = sorted(set(re.findall(r"(?:^|[\n ])[ \t]*\(([A-J])\)", prompt)))
+    # U+2028 (LINE SEPARATOR) separates options in some practice questions; keep
+    # it as an ASCII escape (VS Code strips the literal "unusual line terminator").
+    found = sorted(set(re.findall(r"(?:^|[\n\u2028])[ \t]*\(([A-J])\)", prompt)))
     if not found:
         found = sorted(set(re.findall(r"\(([A-J])\)", prompt)))
     if not found:
@@ -31,7 +33,7 @@ def extract_letter(text, valid_letters):
     for pattern in (
         ANSWER_PATTERN,
         # Lenient tag without parentheses, e.g. "[ANSWER]: A" or "[ANSWER]: **B**".
-        re.compile(r"\[ANSWER\]\s*:?\s*\**\(?([A-J])(?![A-Za-z])"),   # ← 추가
+        re.compile(r"\[ANSWER\]\s*:?\s*\**\(?([A-J])(?![A-Za-z])"),
         re.compile(r"answer\s*(?:is|:)?\s*\(?([A-J])\)", re.IGNORECASE),
         re.compile(r"\(([A-J])\)"),
     ):

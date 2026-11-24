@@ -1,0 +1,9 @@
+Indexed 119 chunks from ewha.pdf
+Resuming: 147 questions already done
+ewha-0140: (B)
+ewha-0136: (A)
+ewha-0143: (B)
+Saved 150 responses to resp_ewha_b1.csv; log: logs/resp_ewha_b1_rag.jsonl
+  fallbacks: 1
+  acc all               :  88.0%  (150 q)
+  acc korean (Ewha)     :  88.0%  (150 q)
